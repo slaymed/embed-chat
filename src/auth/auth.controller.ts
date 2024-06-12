@@ -5,7 +5,6 @@ import { RequestUser } from 'src/user/decorators/request-user.decorator';
 import { User } from 'src/user/entities/user.entity';
 import { RegisterDto } from './dtos/register.dto';
 import { UserService } from 'src/user/user.service';
-import { UserRole } from 'src/user/enums/role.enum';
 import { Request } from 'express';
 import { HashingService } from 'src/hashing/hashing.service';
 import { AuthService } from './auth.service';
@@ -28,7 +27,6 @@ export class AuthController {
   async register(@Body() dto: RegisterDto, @Req() req: Request) {
     const createdUser = await this.userService.create({
       ...dto,
-      role: UserRole.SiteOwner,
       password: this.hashingService.hash(dto.password),
     });
 

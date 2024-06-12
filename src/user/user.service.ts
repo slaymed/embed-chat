@@ -65,7 +65,7 @@ export class UserService {
     return this.usersRepository.save(Object.assign(user, params));
   }
 
-  remove(where: FindOptionsWhere<User>): Promise<DeleteResult> {
+  delete(where: FindOptionsWhere<User>): Promise<DeleteResult> {
     return this.usersRepository.delete(where);
   }
 }

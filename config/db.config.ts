@@ -1,5 +1,8 @@
 import { ConfigService } from '@nestjs/config';
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
+import { Chat } from 'src/chat/entities/chat.entity';
+import { Message } from 'src/message/entities/message.entity';
+import { Site } from 'src/site/entities/site.entity';
 import { User } from 'src/user/entities/user.entity';
 
 export function dbConfig(configService: ConfigService): TypeOrmModuleOptions {
@@ -8,7 +11,7 @@ export function dbConfig(configService: ConfigService): TypeOrmModuleOptions {
   return {
     type: database.type,
     url: database.url,
-    entities: [User],
+    entities: [User, Chat, Site, Message],
     synchronize: true,
   };
 }
