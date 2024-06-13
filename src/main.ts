@@ -1,10 +1,10 @@
 import { NestFactory, Reflector } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { ConfigService } from '@nestjs/config';
-import { session } from 'config/session.config';
 import * as passport from 'passport';
 import { ClassSerializerInterceptor, ValidationPipe } from '@nestjs/common';
 import { exceptionFactory } from './common/utils/exceptions-factory.util';
+import { session } from './config/session.config';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
