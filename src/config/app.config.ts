@@ -1,20 +1,26 @@
+import { toNumber } from 'src/common/utils/transformer.util';
+
 export function appConfig() {
   return {
-    port: parseInt(process.env.PORT, 10),
-    envirement: process.env.NODE_ENV || 'development',
+    port: toNumber(process.env.PORT),
+    envirement: process.env.NODE_ENV,
     cookie: {
       secret: process.env.COOKIE_SECRET,
-      maxAge: parseInt(process.env.COOKIE_MAX_AGE, 10),
+      maxAge: toNumber(process.env.COOKIE_MAX_AGE),
     },
     redis: {
       host: process.env.REDIS_HOST,
-      port: parseInt(process.env.REDIS_PORT, 10),
+      port: toNumber(process.env.REDIS_PORT),
       user: process.env.REDIS_USER,
       password: process.env.REDIS_PASSWORD,
     },
     database: {
-      url: process.env.DATABASE_URL,
       type: process.env.DATABASE_TYPE,
+      host: process.env.DATABASE_HOST,
+      port: toNumber(process.env.DATABASE_PORT),
+      database: process.env.DATABASE_NAME,
+      username: process.env.DATABASE_USER,
+      password: process.env.DATABASE_PASSWORD,
     },
   };
 }

@@ -1,7 +1,7 @@
 import { TimestampEntity } from 'src/common/entities/timestamp.entity';
 import { Entity, PrimaryGeneratedColumn, Column, Index } from 'typeorm';
 
-@Entity()
+@Entity("chats")
 @Index('unique_chat_index', ['siteId', 'siteCustomerId'], {
   unique: true,
 })

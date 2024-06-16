@@ -3,6 +3,9 @@ import { ValidationError } from 'class-validator';
 
 export function exceptionFactory(errors: ValidationError[]) {
   const mappedErrors: Record<string, string> = {};
+
+  console.log('Expection Factory Called');
+
   for (const err of errors) {
     if (!err.constraints) continue;
     const constraintsValues = Object.values(err.constraints);

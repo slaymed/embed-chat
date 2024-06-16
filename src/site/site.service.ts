@@ -33,8 +33,25 @@ export class SiteService {
     return this.sitesRepository.findOne(options);
   }
 
+  findUnique(domain: string, ownerId: number): Promise<Site | null> {
+    return this.sitesRepository.findOne({
+      where: {
+        domain,
+        ownerId,
+      },
+    });
+  }
+
   async findOneOrFail(options: FindOneOptions<Site>): Promise<Site> {
     const user = await this.findOne(options);
+    if (!user) {
+      throw new NotFoundException('Site not found');
+    }
+    return user;
+  }
+
+  async findUniqueOrFail(domain: string, ownerId: number): Promise<Site> {
+    const user = await this.findUnique(domain, ownerId);
     if (!user) {
       throw new NotFoundException('Site not found');
     }

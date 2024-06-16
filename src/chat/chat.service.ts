@@ -12,7 +12,11 @@ import {
   DeleteResult,
 } from 'typeorm';
 import { Chat } from './entities/chat.entity';
-import { CreateChatParams, UpdateChatParams } from './chat.types';
+import {
+  CreateChatParams,
+  UpdateChatParams,
+  FindOrCreateChatParams,
+} from './chat.types';
 
 @Injectable()
 export class ChatService {
@@ -49,6 +53,16 @@ export class ChatService {
       throw new NotFoundException('Chat not found');
     }
     return user;
+  }
+
+  async findOrCreate(params: FindOrCreateChatParams): Promise<Chat> {
+    const existingChat = await this.findOne({
+      where: {
+        siteId: params.siteId,
+        siteCustomerId: params.siteCustomerId,
+      },
+    });
+    return existingChat || this.create(params);
   }
 
   async updateOne(

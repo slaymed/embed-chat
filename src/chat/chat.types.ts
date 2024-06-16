@@ -4,3 +4,8 @@ export interface CreateChatParams {
 }
 
 export interface UpdateChatParams {}
+
+export interface FindOrCreateChatParams {
+  siteId: number;
+  siteCustomerId: number;
+}

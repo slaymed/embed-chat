@@ -10,7 +10,11 @@ export function dbConfig(configService: ConfigService): TypeOrmModuleOptions {
 
   return {
     type: database.type,
-    url: database.url,
+    host: database.host,
+    port: database.port,
+    username: database.username,
+    password: database.password,
+    database: database.database,
     entities: [User, Chat, Site, Message],
     synchronize: true,
   };

@@ -16,8 +16,6 @@ export function session(configService: ConfigService) {
       client: new Redis({
         host: redis.host,
         port: redis.port,
-        username: redis.user,
-        password: redis.password,
       }),
     }),
     cookie: {
